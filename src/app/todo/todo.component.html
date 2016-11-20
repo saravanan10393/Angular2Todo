@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="todo-input">
+    <form (ngSubmit)="addTodo(todoForm.value.taskName); todoForm.value.taskName=''" #todoForm="ngForm" > 
+      <input type="text" [value]="todoForm.value.taskName" name="taskName" ngModel required placeholder="Taskname..."/>
+    </form>
+  </div>
+  <div class="todo-list-container">
+    <ul class="todo-list">
+      <li class="todo-item" *ngFor="let todo of todoList; let i=index" (click)="todo.status = !todo.status" [class.completed]="todo.status">
+        <input type="checkbox" [checked]="todo.status" #todoStaus (change)="updateTodo(todo.id,todoStatus.checked)">
+        <span>{{todo.name}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
